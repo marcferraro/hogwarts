@@ -11,9 +11,10 @@ class Filter extends React.Component {
           <select
             className='ui selection dropdown'
             name='sort'
-            // onChange={}
+            onChange={(event) => this.props.sortHogs(event.target.value)}
             // value={}
           >
+            <option value='default'>Default</option>
             <option value='name'>Name</option>
             <option value='weight'>Weight</option>
           </select>

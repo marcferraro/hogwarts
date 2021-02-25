@@ -11,7 +11,8 @@ class App extends Component {
     super()
     this.state = {
       hogs: hogs,
-      greased: false
+      greased: false,
+      sort: 'default'
     }
   }
 
@@ -40,12 +41,42 @@ class App extends Component {
     }
   }
 
+  sortHogs = (sortType) => {
+    // console.log(sortType)
+    let sorted
+    switch(sortType){
+      case 'default':
+        console.log('default')
+        this.setState({
+          hogs: hogs,
+          sort: 'default'
+        })
+        break
+      case 'name':
+        console.log('name')
+        sorted = this.state.hogs.sort((a,b) => a.name > b.name ? 1 : -1)
+        this.setState({
+          hogs: sorted,
+          sort: 'name'
+        })
+        break
+      case 'weight':
+        console.log('weight')
+        sorted = this.state.hogs.sort((a,b) => a.weight < b.weight ? 1 : -1)
+        this.setState({
+          hogs: sorted,
+          sort: 'weight'
+        })
+        break
+    }
+  }
+
   render() {
     // console.log(this.state)
     return (
       <div className="App">
         <Nav />
-        <Filter toggleGreased={this.toggleGreased}/>
+        <Filter toggleGreased={this.toggleGreased} sortHogs={this.sortHogs}/>
         <HogContainer hogs={this.state.hogs}/>
       </div>
       
