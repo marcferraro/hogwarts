@@ -17,16 +17,17 @@ export default class Hog extends React.Component {
     }
 
     renderDetails = (hog) => {
+        const greased = hog.greased ? "True" : "False"
         return(<div>
-            <p>{hog.specialty}</p>
-            <p>{hog.greased}</p>
-            <p>{hog.weight}</p>
-            <p>{hog['highest medal achieved']}</p>
+            <p className="normalText hoggyText">Specialty: {hog.specialty}</p>
+            <p className="normalText hoggyText">Greased? {greased}</p>
+            <p className="normalText hoggyText">{hog.weight} kg</p>
+            <p className="achievementText normalText hoggyText">{hog['highest medal achieved']}</p>
         </div>)
     }
     
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const { hog, img } = this.props
         
         return(
