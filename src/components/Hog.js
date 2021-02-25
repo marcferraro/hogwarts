@@ -5,15 +5,21 @@ export default class Hog extends React.Component {
         super()
 
         this.state = {
-            showInfo: false
+            showInfo: false,
+            hidden: false
         }
     }
 
-    handleClick = () => {
-        // console.log('hello')
-        this.setState({
+    handleClick = (eventTarget) => {
+        // console.log(eventTarget)
+        if (eventTarget.id === 'hide-hog'){
+            this.hideHog()
+        } else {
+            this.setState({
             showInfo: !this.state.showInfo
-        })
+            })
+        }
+        
     }
 
     renderDetails = (hog) => {
@@ -25,13 +31,30 @@ export default class Hog extends React.Component {
             <p className="achievementText normalText hoggyText">{hog['highest medal achieved']}</p>
         </div>)
     }
+
+    hideHog = () => {
+        console.log('time to hide')
+        this.setState({
+            hidden: !this.state.hidden
+        })
+    }
+
+    styleCheck = () => {
+        let hidden
+        if (this.state.hidden === true){
+            hidden = "none"
+        } else {
+            hidden = ""
+        }
+        return hidden
+    }
     
     render(){
         // console.log(this.props)
         const { hog, img } = this.props
         
         return(
-            <div className="ui card pigTile" onClick={this.handleClick}>
+            <div style={{display: this.styleCheck}} className="ui card pigTile" onClick={(event) => this.handleClick(event.target)}>
                 <div className="ui image">
                     <img src={img} ></img>
                 </div>
@@ -39,6 +62,7 @@ export default class Hog extends React.Component {
                     <h3>{hog.name}</h3>
                 </div>
                 {this.state.showInfo ? this.renderDetails(hog) : null}
+                <button id="hide-hog">Hide Hog</button>
             </div>
             
         )

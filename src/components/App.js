@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   toggleGreased = () => {
-    console.log('greasy')
+    // console.log('greasy')
     // this.setState({
     //   greased: !this.state.greased
     // })
@@ -28,7 +28,7 @@ class App extends Component {
         // console.log(hog)
         return hog.greased === true
       })
-      console.log(greasedHogs)
+      // console.log(greasedHogs)
       this.setState({
         hogs: greasedHogs,
         greased: true
@@ -46,14 +46,14 @@ class App extends Component {
     let sorted
     switch(sortType){
       case 'default':
-        console.log('default')
+        // console.log('default')
         this.setState({
           hogs: hogs,
           sort: 'default'
         })
         break
       case 'name':
-        console.log('name')
+        // console.log('name')
         sorted = this.state.hogs.sort((a,b) => a.name > b.name ? 1 : -1)
         this.setState({
           hogs: sorted,
@@ -61,7 +61,7 @@ class App extends Component {
         })
         break
       case 'weight':
-        console.log('weight')
+        // console.log('weight')
         sorted = this.state.hogs.sort((a,b) => a.weight < b.weight ? 1 : -1)
         this.setState({
           hogs: sorted,
