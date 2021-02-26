@@ -110,11 +110,12 @@ class App extends Component {
 
   render() {
     // console.log(this.state)
+    // console.log(typeof this.hiddenToggle)
     return (
       <div className="App">
         <Nav />
         <Filter toggleGreased={this.toggleGreased} sortHogs={this.sortHogs} toggleHiddenHogs={this.toggleHiddenHogs}/>
-        <HogContainer hogs={this.hiddenToggle ? this.state.hiddenHogs : this.state.hogs} hideHog={this.hideHog}/>
+        <HogContainer hogs={this.state.hiddenToggle ? this.state.hiddenHogs : this.state.hogs} hideHog={this.hideHog}/>
       </div>
       
     );
