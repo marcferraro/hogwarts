@@ -39,22 +39,26 @@ export default class Hog extends React.Component {
         })
     }
 
-    styleCheck = () => {
-        let hidden
-        if (this.state.hidden === true){
-            hidden = "none"
-        } else {
-            hidden = ""
-        }
-        return hidden
+    hideTest = (e) => {
+        e.stopPropagation()
+        console.log('hide test')
     }
+    // styleCheck = () => {
+    //     let hidden
+    //     if (this.state.hidden === false){
+    //         hidden = "none"
+    //     } else {
+    //         hidden = ""
+    //     }
+    //     return hidden
+    // }
     
     render(){
         // console.log(this.props)
         const { hog, img } = this.props
         
         return(
-            <div style={{display: this.styleCheck}} className="ui card pigTile" onClick={(event) => this.handleClick(event.target)}>
+            <div style={{display: this.state.hidden ? "none" : ""}} className="ui card pigTile" onClick={(event) => this.handleClick(event.target)}>
                 <div className="ui image">
                     <img src={img} ></img>
                 </div>
@@ -62,9 +66,11 @@ export default class Hog extends React.Component {
                     <h3>{hog.name}</h3>
                 </div>
                 {this.state.showInfo ? this.renderDetails(hog) : null}
-                <button id="hide-hog">Hide Hog</button>
+                <button onClick={this.hideTest} >Hide Hog</button>
             </div>
             
         )
     }
 }
+
+// id="hide-hog"
