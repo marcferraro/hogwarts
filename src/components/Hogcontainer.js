@@ -42,7 +42,7 @@ class HogContainer extends Component {
       <div >
         <h1>Hogs</h1>
         <div className="ui three cards grid container">
-          {hogs.map((hog, index) => <Hog key={index} hog={hog} img={pictureMap[hog.name]}/> )}
+          {hogs.map(hog => <Hog key={hog.id} hog={hog} img={pictureMap[hog.name]} hideHog={this.props.hideHog}/> )}
         </div>
       </div>
     );

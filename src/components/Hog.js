@@ -12,13 +12,13 @@ export default class Hog extends React.Component {
 
     handleClick = (eventTarget) => {
         // console.log(eventTarget)
-        if (eventTarget.id === 'hide-hog'){
-            this.hideHog()
-        } else {
+        // if (eventTarget.id === 'hide-hog'){
+        //     this.hideHog()
+        // } else {
             this.setState({
             showInfo: !this.state.showInfo
             })
-        }
+        // }
         
     }
 
@@ -32,17 +32,20 @@ export default class Hog extends React.Component {
         </div>)
     }
 
-    hideHog = () => {
-        console.log('time to hide')
-        this.setState({
-            hidden: !this.state.hidden
-        })
-    }
+    // hideHog = (e) => {
+    //     e.stopPropagation()
+        
+    //     console.log('time to hide')
+    //     this.setState({
+    //         hidden: !this.state.hidden
+    //     })
+    // }
 
-    hideTest = (e) => {
-        e.stopPropagation()
-        console.log('hide test')
-    }
+    // hideTest = (e) => {
+    //     e.stopPropagation()
+    //     console.log('hide test')
+    // }
+
     // styleCheck = () => {
     //     let hidden
     //     if (this.state.hidden === false){
@@ -56,21 +59,23 @@ export default class Hog extends React.Component {
     render(){
         // console.log(this.props)
         const { hog, img } = this.props
+        // console.log(hog)
         
         return(
-            <div style={{display: this.state.hidden ? "none" : ""}} className="ui card pigTile" onClick={(event) => this.handleClick(event.target)}>
+            <div className="ui card pigTile" onClick={(event) => this.handleClick(event.target)}>
                 <div className="ui image">
-                    <img src={img} ></img>
+                    <img src={img} alt={`${hog.name} the pig`}></img>
                 </div>
                 <div className="content">
                     <h3>{hog.name}</h3>
                 </div>
                 {this.state.showInfo ? this.renderDetails(hog) : null}
-                <button onClick={this.hideTest} >Hide Hog</button>
+                <button onClick={(event) => this.props.hideHog(event, hog)} >Hide Hog</button>
             </div>
             
         )
     }
 }
 
+// style={{display: this.state.hidden ? "none" : ""}}
 // id="hide-hog"

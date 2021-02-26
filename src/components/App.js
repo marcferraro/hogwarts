@@ -10,10 +10,23 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      hogs: hogs,
+      hogs: [],
+      hiddenHogs: [],
       greased: false,
       sort: 'default'
     }
+  }
+
+  componentDidMount(){
+    let massagedHogs
+    massagedHogs = hogs.map((hog, index) => {
+      hog.hidden = false
+      hog.id = index + 1
+      return hog
+    })
+    this.setState({
+      hogs: massagedHogs
+    })
   }
 
   toggleGreased = () => {
@@ -71,13 +84,29 @@ class App extends Component {
     }
   }
 
+  hideHog = (e, hiddenHog) => {
+    e.stopPropagation()
+
+    console.log(e.target, hiddenHog)
+    // console.log(this.state.hogs)
+    const newHogs = this.state.hogs.filter(hog => hog.id !== hiddenHog.id)
+    console.log(newHogs)
+    // const 
+    // const hogs = 
+    // console.log(hog)
+    this.setState({
+      hogs: newHogs,
+      hiddenHogs: [...this.state.hiddenHogs, hiddenHog]
+    })
+  }
+
   render() {
     // console.log(this.state)
     return (
       <div className="App">
         <Nav />
         <Filter toggleGreased={this.toggleGreased} sortHogs={this.sortHogs}/>
-        <HogContainer hogs={this.state.hogs}/>
+        <HogContainer hogs={this.state.hogs} hideHog={this.hideHog}/>
       </div>
       
     );
