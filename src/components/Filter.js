@@ -34,7 +34,7 @@ class Filter extends React.Component {
           <div className='item'>
             <button
               className='ui blue basic button compact'
-              // onClick={}
+              onClick={this.props.toggleHiddenHogs}
             >
               Hidden Hogs
             </button>

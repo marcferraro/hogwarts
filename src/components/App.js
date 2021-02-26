@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       hogs: [],
       hiddenHogs: [],
+      hiddenToggle: false,
       greased: false,
       sort: 'default'
     }
@@ -90,7 +91,7 @@ class App extends Component {
     console.log(e.target, hiddenHog)
     // console.log(this.state.hogs)
     const newHogs = this.state.hogs.filter(hog => hog.id !== hiddenHog.id)
-    console.log(newHogs)
+    // console.log(newHogs)
     // const 
     // const hogs = 
     // console.log(hog)
@@ -100,13 +101,20 @@ class App extends Component {
     })
   }
 
+  toggleHiddenHogs = () => {
+    console.log(this.state.hiddenHogs)
+    this.setState({
+      hiddenToggle: !this.state.hiddenToggle
+    })
+  }
+
   render() {
     // console.log(this.state)
     return (
       <div className="App">
         <Nav />
-        <Filter toggleGreased={this.toggleGreased} sortHogs={this.sortHogs}/>
-        <HogContainer hogs={this.state.hogs} hideHog={this.hideHog}/>
+        <Filter toggleGreased={this.toggleGreased} sortHogs={this.sortHogs} toggleHiddenHogs={this.toggleHiddenHogs}/>
+        <HogContainer hogs={this.hiddenToggle ? this.state.hiddenHogs : this.state.hogs} hideHog={this.hideHog}/>
       </div>
       
     );
